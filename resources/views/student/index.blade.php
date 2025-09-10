@@ -27,6 +27,7 @@
             {{-- <button class="btn btn-success">add</button> --}}
             {{-- <a class="btn btn-success" href="http://localhost/students/create">add</a> --}}
             <a class="btn btn-success" href="{{ route('students.create') }}">add</a>
+            <a class="btn btn-primary" href="{{ route('students.create') }}">excel</a>
         </div>
         <table class="table table-bordered">
             <thead>
