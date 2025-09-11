@@ -33,7 +33,7 @@ class StudentController extends Controller
         // ];
 
         $data = DB::select('select * from students');
-        dd($data);
+        // dd($data);
 
 
         return view('student.index', ['data' => $data]);
