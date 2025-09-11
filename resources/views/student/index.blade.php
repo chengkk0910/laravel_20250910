@@ -30,7 +30,7 @@
         </div>
 
         @php
-            // dd($data);。
+            // dd($data);
         @endphp
         <table class="table table-bordered">
             <thead>
