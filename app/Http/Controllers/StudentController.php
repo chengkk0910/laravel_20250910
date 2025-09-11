@@ -32,7 +32,7 @@ class StudentController extends Controller
         //     ]
         // ];
 
-        // $data = DB::select('select * from stu；dents');
+        // $data = DB::select('select * from students');
         // get()  feachAll 多筆 array foreach
         // first() feach 單筆 
         $data = DB::table('students')->where('id', 1)->get();
