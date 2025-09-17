@@ -5,7 +5,7 @@
 @section('title', 'Child Title')
 
 @section('sidebar')
-    @@parent
+    @parent
 
     <p>This is appended to the master sidebar.</p>
 @endsection
