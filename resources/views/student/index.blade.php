@@ -12,55 +12,42 @@
 <body>
 
     <div class="container mt-3">
-        <h2>students index</h2>
+        <h2>學生資料總表</h2>
         <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
-
-        <?php
-        
-        $url = route('students.create');
-        // $url = route('students.edit', ['student' => 1]);
-        // dd($url);
-        ?>
-
-        <div class="text-end mb-3">
-            {{-- <button class="btn btn-success">add</button> --}}
-            {{-- <a class="btn btn-success" href="http://localhost/students/create">add</a> --}}
-            <a class="btn btn-success" href="{{ route('students.create') }}">add</a>
-            <a class="btn btn-primary" href="{{ route('students.create') }}">excel</a>
-        </div>
-
-        @php
-            // dd($data);
-        @endphp
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
-                    <th width="10%">Name</th>
+                    <th>id</th>
+                    <th>name</th>
                     <th>opt</th>
                 </tr>
             </thead>
             <tbody>
-
-                {{-- blade  --}}
-                @foreach ($data as $value)
-                    <tr>
-                        <td>{{ $value->id }}</td>
-                        <td>{{ $value->name }}</td>
-                        <td>
-                            <a class="btn btn-warning"
-                                href="{{ route('students.edit', ['student' => $value->id]) }}">edit</a>
-                        </td>
-                    </tr>
-                @endforeach
-
-
-                {{-- 原生php --}}
-                <?php foreach ($data as $key => $value) :?>
-
-                <?php endforeach;?>
-
-
+                <tr>
+                    <td>1</td>
+                    <td>amy</td>
+                    <td>
+                        <a class="btn btn-warning">edit</a>
+                        <a class="btn btn-danger">delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>amy</td>
+                    <td>
+                        <a class="btn btn-warning">edit</a>
+                        <a class="btn btn-danger">delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>amy</td>
+                    <td>
+                        <a class="btn btn-warning">edit</a>
+                        <a class="btn btn-danger">delete</a>
+                    </td>
+                </tr>
+                
             </tbody>
         </table>
     </div>

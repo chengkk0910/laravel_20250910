@@ -13,38 +13,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $url = route('students.create');
-        // $url = route('students.edit', ['student' => 1]);
-        // dd($url);
-        // dd('hello students index');
-        // $data = [
-        //     [
-        //         'id' => 1,
-        //         'name' => 'amy',
-        //     ],
-        //     [
-        //         'id' => 2,
-        //         'name' => 'bob',
-        //     ],
-        //     [
-        //         'id' => 3,
-        //         'name' => 'cat',
-        //     ]
-        // ];
 
-        // $data = DB::select('select * from students');
-        // get()  feachAll 多筆 array foreach
-        // first() feach 單筆 
-        $data = DB::table('students')->where('id', 1)->get();
-        $data = DB::table('students')->get();
-        dd($data);
-
-        // $data->id
-        // $data['id']
-        // $data.id
-
-
-        return view('student.index', ['data' => $data]);
+        return view('student.index');
     }
 
     /**
