@@ -3,14 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 
-
-
 // students
 Route::get('/pages_html', [StudentController::class, 'html'])->name('pages.html');
 Route::get('/pages_js', [StudentController::class, 'js'])->name('pages.js');
 Route::get('/pages_php', [StudentController::class, 'php'])->name('pages.php');
 Route::get('/pages_python', [StudentController::class, 'python'])->name('pages.python');
-
 
 Route::get('/students_excel', [StudentController::class, 'excel']);
 Route::get('/students_test', [StudentController::class, 'test']);

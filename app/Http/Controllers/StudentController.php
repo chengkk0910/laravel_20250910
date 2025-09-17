@@ -34,7 +34,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $input = $request->all();
+        $input = $request->except('_token');
+        // dd($input);
+        $data = new Student;
+
+        $data->name = $input['name'];
+
+        $data->save();
+
+        // return redirect('/students');
+        return redirect()->route('students.index');
     }
 
     /**
