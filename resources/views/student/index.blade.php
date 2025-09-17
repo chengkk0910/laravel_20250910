@@ -23,31 +23,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>amy</td>
-                    <td>
-                        <a class="btn btn-warning">edit</a>
-                        <a class="btn btn-danger">delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>amy</td>
-                    <td>
-                        <a class="btn btn-warning">edit</a>
-                        <a class="btn btn-danger">delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>amy</td>
-                    <td>
-                        <a class="btn btn-warning">edit</a>
-                        <a class="btn btn-danger">delete</a>
-                    </td>
-                </tr>
-                
+                @foreach ($data as $value)
+                    <tr>
+                        <td>{{$value->id}}</td>
+                        <td>{{$value->name}}</td>
+                        <td>
+                            <a class="btn btn-warning">edit</a>
+                            <a class="btn btn-danger">delete</a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
