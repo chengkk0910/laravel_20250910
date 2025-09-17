@@ -15,7 +15,7 @@
         <h2>學生資料總表</h2>
         <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>
         <div class="text-end mb-3">
-            <a class="btn btn-success" href="{{route('students.create')}}">add</a>
+            <a class="btn btn-success" href="{{ route('students.create') }}">add</a>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -31,7 +31,8 @@
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
                         <td>
-                            <a class="btn btn-warning">edit</a>
+                            <a class="btn btn-warning"
+                                href="{{ route('students.edit', ['student' => $value->id]) }}">edit</a>
                             <a class="btn btn-danger">delete</a>
                         </td>
                     </tr>

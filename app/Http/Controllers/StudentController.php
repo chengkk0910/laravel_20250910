@@ -61,7 +61,12 @@ class StudentController extends Controller
     public function edit(string $id)
     {
         // dd("students id = $id edit ok");
-        return view('student.edit', ['id' => $id]);
+        // $data = [
+        //     'id' => $id
+        // ];
+        $data = Student::find($id);
+        // dd($data);
+        return view('student.edit', ['data' => $data]);
     }
 
     /**
@@ -69,7 +74,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd('update ok');
+        // dd($data);
+
+        // form input       
+        $input = $request->except('_token');
+
+        // 抓id 單筆資料
+        $data = Student::find($id);
+        $data->name = $input['name'];
+        $data->save();
+
+        return redirect()->route('students.index');
     }
 
     /**
