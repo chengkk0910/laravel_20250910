@@ -64,7 +64,6 @@ FROM
     Products
     INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
 
-
 SELECT
     students.id,
     students.name,
@@ -72,3 +71,26 @@ SELECT
 FROM
     students
     LEFT JOIN phones ON students.id = phones.student_id;
+
+INSERT INTO
+    `hobbies` (
+        `id`,
+        `student_id`,
+        `hobby`,
+        `created_at`,
+        `updated_at`
+    )
+VALUES
+    (NULL, '2', 'PHP', NULL, NULL),
+    (NULL, '3', 'HTML', NULL, NULL),
+    (NULL, '3', 'CSS', NULL, NULL),
+    (NULL, '3', 'LARAVEL', NULL, NULL)
+
+
+SELECT
+    students.id,
+    students.name,
+    hobbies.hobby
+FROM
+    students
+    LEFT JOIN hobbies ON students.id = hobbies.student_id;
