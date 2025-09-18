@@ -14,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data = Student::all();
+        // $data = Student::all();
+        $data = Student::get();
         // dd($data);
         return view('student.index', ['data' => $data]);
     }
@@ -93,7 +94,10 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd("students destroy ok $id");
+        $data = Student::find($id);
+        $data->delete();
+        return redirect()->route('students.index');
     }
 
     public function excel()
