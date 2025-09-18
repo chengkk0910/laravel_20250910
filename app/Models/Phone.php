@@ -12,6 +12,6 @@ class Phone extends Model
      */
     public function studentRelation(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 }
