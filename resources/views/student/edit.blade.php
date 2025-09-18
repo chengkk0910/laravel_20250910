@@ -11,7 +11,7 @@
 
 <body>
     <div class="container mt-3">
-        <h2>Student Edit form ID:{{$data->id}}</h2>
+        <h2>Student Edit form ID:{{ $data->id }}</h2>
         @php
             // dd($data);
         @endphp
@@ -21,12 +21,20 @@
             @method('put')
             <div class="mb-3 mt-3">
                 <label for="name">Name:</label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="{{$data->name}}"> 
+                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name"
+                    value="{{ $data->name }}">
             </div>
             <div class="mb-3 mt-3">
                 <label for="phone">Phone:</label>
-                <input type="name" class="form-control" id="phone" placeholder="Enter phone" name="phone" value="{{$data->phoneRelation->phone ?? ''}}"> 
+                <input type="name" class="form-control" id="phone" placeholder="Enter phone" name="phone"
+                    value="{{ $data->phoneRelation->phone ?? '' }}">
             </div>
+            <div class="mb-3 mt-3">
+                <label for="hobbies">Hobbies: (ex: PHP,MySQL,Laravel)</label>
+                <input type="name" class="form-control" id="hobbies" placeholder="Enter hobbies" name="hobbies"
+                    value="{{ $data->hobbyString ?? '' }}">
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

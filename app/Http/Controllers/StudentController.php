@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use App\Models\Phone;
+use App\Models\Hobby;
 
 
 class StudentController extends Controller
@@ -76,13 +77,15 @@ class StudentController extends Controller
     {
         // $input = $request->all();
 
-        //    array:2 [▼ // app\Http\Controllers\StudentController.php:39
-        //   "name" => "kai"
-        //   "phone" => "09123"
+        //   array:3 [▼ // app\Http\Controllers\StudentController.php:87
+        //   "name" => "amy"
+        //   "phone" => "123"
+        //   "hobbies" => "PHP,PYTHON"
         // ]
 
         $input = $request->except('_token');
 
+        // dd($input);
         // ps. 主表存檔 才會有id
 
 
@@ -92,12 +95,25 @@ class StudentController extends Controller
         $data->save();
 
 
-        // 子表 也要存檔
-        // 子表
+        // phone子表 也要存檔
+        // phone子表
         $dataPhone = new Phone;
         $dataPhone->student_id = $data->id;
         $dataPhone->phone = $input['phone'];
         $dataPhone->save();
+
+        // 新增hobby子表
+        // "hobbies" => "PHP,JS" 
+        // string to array
+        $hobbyArray = explode(',', $input['hobbies']);
+        // dd($hobbyArray);
+
+        foreach ($hobbyArray as $key => $value) {
+            $dataHobby = new Hobby;
+            $dataHobby->student_id = $data->id;
+            $dataHobby->hobby = $value;
+            $dataHobby->save();
+        }
 
         // return redirect('/students');
         return redirect()->route('students.index');
@@ -120,7 +136,22 @@ class StudentController extends Controller
         // $data = [
         //     'id' => $id
         // ];
-        $data = Student::with('phoneRelation')->find($id);
+        $data = Student::with('phoneRelation', 'hobbiesRelation')->find($id);
+        // dd($data);
+
+        $dataHobbies = $data->hobbiesRelation;
+
+        // $hobbyString = '';
+        $hobbyArray = [];
+        foreach ($dataHobbies as $keyHobby => $valueHobby) {
+            array_push($hobbyArray, $valueHobby->hobby);
+        };
+
+        $hobbyString = join(',', $hobbyArray);
+        //  dd($hobbyString);
+        $data['hobbyString'] = $hobbyString;
+        // dd($data[$key']
+
         // dd($data);
         return view('student.edit', ['data' => $data]);
     }
@@ -133,27 +164,47 @@ class StudentController extends Controller
         // dd('update ok');
         // dd($data);
 
-        //   array:2 [▼ // app\Http\Controllers\StudentController.php:99
-        //   "name" => "dog"
-        //   "phone" => "123"
+        // array:3 [▼ // app\Http\Controllers\StudentController.php:158
+        //   "name" => "amy"
+        //   "phone" => "0911"
+        //   "hobbies" => "PHP,JS"
         // ]
 
         // form input       
         $input = $request->except('_token', '_method');
+        // dd($input);
+
+
 
         // 抓主表資料
         $data = Student::find($id);
         $data->name = $input['name'];
         $data->save();
 
-        // 刪除子表
+        // 刪除phone子表
         Phone::where('student_id', $id)->delete();
 
-        // 新增子表
+        // 新增phone子表
         $dataPhone = new Phone;
         $dataPhone->student_id = $data->id;
         $dataPhone->phone = $input['phone'];
         $dataPhone->save();
+
+        // 刪除hobby子表
+        Hobby::where('student_id', $id)->delete();
+
+        // 新增hobby子表
+        // "hobbies" => "PHP,JS" 
+        // string to array
+        $hobbyArray = explode(',', $input['hobbies']);
+        // dd($hobbyArray);
+
+        foreach ($hobbyArray as $key => $value) {
+            $dataHobby = new Hobby;
+            $dataHobby->student_id = $data->id;
+            $dataHobby->hobby = $value;
+            $dataHobby->save();
+        }
 
         return redirect()->route('students.index');
     }
@@ -167,6 +218,7 @@ class StudentController extends Controller
 
         // 先刪除子表
         Phone::where('student_id', $id)->delete();
+        Hobby::where('student_id', $id)->delete();
         Student::where('id', $id)->delete();
         // $data = Student::find($id);
         // $data->delete();
