@@ -81,6 +81,8 @@ INSERT INTO
         `updated_at`
     )
 VALUES
+    (NULL, '1', 'PHP', NULL, NULL),
+    (NULL, '1', 'JS', NULL, NULL),
     (NULL, '2', 'PHP', NULL, NULL),
     (NULL, '3', 'HTML', NULL, NULL),
     (NULL, '3', 'CSS', NULL, NULL),
