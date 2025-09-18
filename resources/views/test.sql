@@ -36,7 +36,8 @@ CREATE TABLE `laravel_0910`.`cars` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR NULL DEFAULT '' COMMENT '姓名',
     `color` INT NULL DEFAULT '0' COMMENT 'color 代號',
-    `date` DATETIME NULL DEFAULT '2020-01-01' COMMENT '出廠日期',,
+    `date` DATETIME NULL DEFAULT '2020-01-01' COMMENT '出廠日期',
+,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -54,3 +55,20 @@ CREATE TABLE `laravel_0910`.`cars` (
     `date` VATETIME NULL DEFAULT '2020-01-01' COMMENT '出廠日期',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+SELECT
+    ProductID,
+    ProductName,
+    CategoryName
+FROM
+    Products
+    INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+
+SELECT
+    students.id,
+    students.name,
+    phones.phone
+FROM
+    students
+    LEFT JOIN phones ON students.id = phones.student_id;
