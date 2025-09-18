@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
+use App\Models\Phone;
 
 
 class StudentController extends Controller
@@ -35,13 +36,29 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         // $input = $request->all();
+
+        //    array:2 [▼ // app\Http\Controllers\StudentController.php:39
+        //   "name" => "kai"
+        //   "phone" => "09123"
+        // ]
+
         $input = $request->except('_token');
-        // dd($input);
+
+        // ps. 主表存檔 才會有id
+
+
+        // 主表
         $data = new Student;
-
         $data->name = $input['name'];
-
         $data->save();
+
+
+        // 子表 也要存檔
+        // 子表
+        $dataPhone = new Phone;
+        $dataPhone->student_id = $data->id;
+        $dataPhone->phone = $input['phone'];
+        $dataPhone->save();
 
         // return redirect('/students');
         return redirect()->route('students.index');
