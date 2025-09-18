@@ -8,6 +8,9 @@ use App\Models\Student;
 use App\Models\Phone;
 use App\Models\Hobby;
 
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class StudentController extends Controller
 {
@@ -227,8 +230,7 @@ class StudentController extends Controller
 
     public function excel()
     {
-        dd('students excel ok');
-        // return view('student.excel');
+        return Excel::download(new StudentsExport, 'students.xlsx');
     }
 
     public function test()
